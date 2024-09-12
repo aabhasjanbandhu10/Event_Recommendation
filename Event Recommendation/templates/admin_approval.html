@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Admin Event Approval</title>
+  </head>
+  <body>
+    <h1>Pending Events for Approval</h1>
+    <ul>
+      {% for event in pending_events %}
+      <li>
+        <h3>{{ event[1] }}</h3>
+        <p>{{ event[2] }}</p>
+        <p>Organized by: {{ event[3] }}</p>
+        <p>Date: {{ event[4] }}</p>
+        <a href="{{ url_for('approve_event', event_id=event[0]) }}"
+          >Approve Event</a
+        >
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

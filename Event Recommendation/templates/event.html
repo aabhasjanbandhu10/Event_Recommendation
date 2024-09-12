@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>{{ event[1] }} - Event Details</title>
+  </head>
+  <body>
+    <h1>{{ event[1] }}</h1>
+    <p><strong>Description:</strong> {{ event[2] }}</p>
+    <p><strong>Organized by:</strong> {{ event[3] }}</p>
+    <p><strong>Date:</strong> {{ event[4] }}</p>
+
+     <!-- Participation form -->
+    {% if session.get('username') %}
+    <form action="{{ url_for('participate', event_id=event[0]) }}" method="POST">
+        <input type="submit" value="Participate in this Event">
+    </form>
+    {% else %}
+    <p>You must be logged in to participate in this event.</p>
+    <a href="{{ url_for('login') }}">Login</a>
+    {% endif %}
+    
+    <a href="{{ url_for('index') }}">Back to Events</a>
+ </body>
+</html>
